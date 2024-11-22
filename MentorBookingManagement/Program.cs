@@ -1,4 +1,6 @@
 using Microsoft.OpenApi.Models;
+using Repositories;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<MentorRepository>();
+
+builder.Services.AddScoped<MentorService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddSwaggerGen(option =>
 {
     option.DescribeAllParametersInCamelCase();
